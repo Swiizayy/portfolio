@@ -8,7 +8,12 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
-*{ margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron',sans-serif; }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron',sans-serif;
+}
 
 body{
   background:#0d0d0d;
@@ -16,7 +21,6 @@ body{
   overflow-x:hidden;
   position:relative;
 }
-
 
 :root{
   --safe-top: env(safe-area-inset-top);
@@ -29,7 +33,7 @@ body{
   width:100vw;
   height:100vh;
   pointer-events:none;
-  z-index:0; 
+  z-index:0;
 }
 
 
@@ -81,7 +85,8 @@ header{
 
 .menu-panel{
   position:fixed;
-  top:0; right:-70%;
+  top:0;
+  right:-70%;
   width:70%;
   height:100vh;
   background:#111;
@@ -113,7 +118,8 @@ header{
   display:none;
   padding-top:130px;
   min-height:100vh;
-  z-index:5; 
+  z-index:5;
+}
 .page.active{
   display:block;
 }
@@ -124,7 +130,6 @@ header{
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:20px;
   padding:20px;
-  z-index:5;
 }
 .gallery img{
   width:100%;
@@ -187,7 +192,7 @@ header{
 
 .neon-rain{
   position:absolute;
-  top:-200px;
+  top:-230px;
   width:2px;
   background:linear-gradient(to bottom,
     rgba(180,76,255,0),
@@ -197,18 +202,23 @@ header{
   );
   opacity:0.9;
   border-radius:12px;
-  animation:rainDrop 1.5s linear infinite;
+  animation:rainDrop 1.7s linear infinite;
   filter:blur(0.6px);
 }
 
 @keyframes rainDrop{
-  to{ transform:translateY(140vh); opacity:0; }
+  to{
+    transform:translateY(160vh);
+    opacity:0;
+  }
 }
 </style>
 </head>
 <body>
 
+
 <div id="rainLayer"></div>
+
 
 <header>
   <div class="logo" onclick="openPage('portfolio')">joey.photographie</div>
@@ -237,6 +247,7 @@ header{
     <img src="1000085949.jpg">
   </div>
 </div>
+
 
 <div id="contact" class="page">
   <h2 style="text-align:center;color:#ffd700;text-shadow:0 0 12px #ffd700;">Contact</h2>
@@ -287,12 +298,12 @@ modal.addEventListener("click",()=>modal.classList.remove("show"));
 
 function createNeonRain(){
   const layer=document.getElementById("rainLayer");
-  for(let i=0;i<40;i++){
+  for(let i=0;i<45;i++){
     let drop=document.createElement("div");
     drop.classList.add("neon-rain");
     drop.style.left=Math.random()*100+"%";
-    drop.style.height=(120+Math.random()*200)+"px";
-    drop.style.animationDelay=(Math.random()*1.5)+"s";
+    drop.style.height=(150+Math.random()*220)+"px";
+    drop.style.animationDelay=(Math.random()*1.8)+"s";
     layer.appendChild(drop);
   }
 }
