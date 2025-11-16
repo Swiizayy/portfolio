@@ -10,13 +10,11 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
 body{background:#0d0d0d;color:#fff;overflow-x:hidden}
 
-
 header{
   position:fixed;top:0;left:0;width:100%;padding:15px 25px;
   background:#111;display:flex;justify-content:space-between;align-items:center;
   z-index:1000;box-shadow:0 0 10px rgba(255,255,255,0.08);
 }
-
 
 @keyframes neonPulseViolet {
   0%,100% { text-shadow:0 0 10px #b44cff,0 0 22px #d277ff; color:#b44cff; }
@@ -30,17 +28,14 @@ header{
 }
 .logo:hover{transform:scale(1.08)}
 
-
 .menu-bar a{
   margin-left:25px;font-size:20px;color:white;text-decoration:none;
   transition:0.3s;cursor:pointer;
 }
 .menu-bar a:hover{color:#b44cff}
 
-
 .page{display:none;padding-top:100px;min-height:100vh}
 .page.active{display:block;position:relative;z-index:2}
-
 
 .gallery{
   display:grid;gap:20px;padding:20px;
@@ -53,11 +48,9 @@ header{
 }
 .gallery img:hover{transform:scale(1.05)}
 
-
 .contact-text{
   text-align:center;font-size:18px;margin-top:10px;color:#ccc;
 }
-
 
 .contact-icons{
   text-align:center;margin-top:50px;display:flex;justify-content:center;gap:40px;
@@ -72,7 +65,6 @@ header{
   filter:drop-shadow(0 0 18px #d277ff) drop-shadow(0 0 30px #b44cff);
 }
 
-
 .modal{
   position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,0.85);opacity:0;pointer-events:none;
@@ -83,7 +75,6 @@ header{
   max-width:90%;max-height:90%;border-radius:10px;
   box-shadow:0 0 25px #b44cff;
 }
-
 
 .neon-rain{
   position:absolute;
@@ -119,50 +110,53 @@ header{
   </div>
 </header>
 
+<div id="portfolio" class="page active">
+  <h2 style="text-align:center;margin-bottom:20px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Portfolio</h2>
+
+  <div id="rainLayer" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden"></div>
 
 <div id="portfolio" class="page active">
   <h2 style="text-align:center;margin-bottom:20px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Portfolio</h2>
 
-
   <div id="rainLayer" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden"></div>
 
- <div class="gallery">
-  <img src="1000085839.jpg">
-  <img src="1000085860.jpg">
-  <img src="1000085861.jpg">
-  <img src="1000085937.jpg">
-  <img src="1000085939.jpg">
-  <img src="1000085949.jpg">
+  <div class="gallery">
+    <img src="1000085839.jpg">
+    <img src="1000085860.jpg">
+    <img src="1000085861.jpg">
+    <img src="1000085937.jpg">
+    <img src="1000085939.jpg">
+    <img src="1000085949.jpg">
+  </div>
 </div>
 
 
 <div id="contact" class="page">
-  <h2 style="text-align:center;margin-bottom:25px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Contact</h2>
-  
-<p class="contact-text">
-  Je poste encore plus de photos sur les réseaux ci-dessous ! Vous pouvez aussi me poser vos questions en DM 😉
-</p>
+  <h2 style="text-align:center;margin-bottom:25px;color:#ffd700;text-shadow:0 0 10px #ffd700;">
+    Contact
+  </h2>
 
-<div class="contact-icons">
-    
-  <a class="contact-btn" href="https://x.com/Swiizayy" target="_blank">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016.5 2a4.48 4.48 0 00-4.47 4.48c0 .35.04.7.12 1.03A12.94 12.94 0 013 3.1a4.48 4.48 0 001.39 5.98A4.41 4.41 0 012.8 8.7v.06A4.48 4.48 0 004.46 13a4.52 4.52 0 01-2.02.08A4.48 4.48 0 006.6 16a9 9 0 01-5.57 1.92A8.6 8.6 0 010 17.9 12.93 12.93 0 007 20c8.4 0 13-7.1 13-13.26v-.6A9.18 9.18 0 0023 3z" />
-    </svg>
-  </a>
+  <p class="contact-text">
+    Je poste encore plus de photos sur les réseaux ci-dessous !<br>
+    Vous pouvez aussi me poser vos questions en DM 😉
+  </p>
 
-  <a class="contact-btn" href="https://www.instagram.com/j0ey.67/" target="_blank">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6">
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="4" fill="#ffffff" />
-      <circle cx="17" cy="7" r="1" fill="#ffffff" />
-    </svg>
-  </a>
+  <div class="contact-icons">
+    <a class="contact-btn" href="https://x.com/Swiizayy" target="_blank">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016.5 2a4.48 4.48 0 00-4.47 4.48c0 .35.04.7.12 1.03A12.94 12.94 0 013 3.1a4.48 4.48 0 001.39 5.98A4.41 4.41 0 012.8 8.7v.06A4.48 4.48 0 004.46 13a4.52 4.52 0 01-2.02.08A4.48 4.48 0 006.6 16a9 9 0 01-5.57 1.92A8.6 8.6 0 010 17.9 12.93 12.93 0 007 20c8.4 0 13-7.1 13-13.26v-.6A9.18 9.18 0 0023 3z"/>
+      </svg>
+    </a>
 
+    <a class="contact-btn" href="https://www.instagram.com/j0ey.67/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4" fill="#ffffff"/>
+        <circle cx="17" cy="7" r="1" fill="#ffffff"/>
+      </svg>
+    </a>
+  </div>
 </div>
-
-</div>
-
 
 <div id="modal" class="modal"><img id="modalImg"></div>
 
@@ -172,7 +166,6 @@ function openPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
 
 const modal=document.getElementById('modal');
 const modalImg=document.getElementById('modalImg');
@@ -184,7 +177,6 @@ document.querySelectorAll('.gallery img').forEach(img=>{
   });
 });
 modal.addEventListener('click',()=>modal.classList.remove('show'));
-
 
 function createNeonRain(){
   const layer=document.getElementById('rainLayer');
@@ -205,5 +197,3 @@ createNeonRain();
 
 </body>
 </html>
-
-
