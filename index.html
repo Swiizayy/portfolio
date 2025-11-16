@@ -97,10 +97,21 @@ header{
 @keyframes rainFall{
   to{ transform:translateY(140vh); opacity:0; }
 }
+
+@media (max-width: 600px) {
+  .menu-bar a {
+    font-size: 18px;
+    margin-left: 18px;
+    padding: 10px 5px; 
+  }
+
+  header {
+    padding: 15px 15px; 
+  }
+}
 </style>
 </head>
 <body>
-
 
 <div id="rainLayer" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden"></div>
 
@@ -112,7 +123,6 @@ header{
     <a onclick="openPage('contact')">Contact</a>
   </div>
 </header>
-
 
 <div id="portfolio" class="page active">
   <h2 style="text-align:center;margin-bottom:20px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Portfolio</h2>
@@ -126,7 +136,6 @@ header{
     <img src="1000085949.jpg">
   </div>
 </div>
-
 
 <div id="contact" class="page">
   <h2 style="text-align:center;margin-bottom:25px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Contact</h2>
