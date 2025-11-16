@@ -1,321 +1,312 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-<title>joey.photographie</title>
-<style>
+<meta charset="UTF-8" />
 
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no" />
+
+<title>joey.photographie</title>
+
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Orbitron",sans-serif}
-html,body{height:100%}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron',sans-serif;
+}
+
 body{
   background:#0d0d0d;
-  color:#fff;
+  color:white;
   overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  position:relative;
+}
+
+:root{
+  --safe-top: env(safe-area-inset-top);
 }
 
 
-:root{--safe-top:env(safe-area-inset-top,0px)}
-body{padding-top:calc(var(--safe-top) + 64px)} 
 #rainLayer{
   position:fixed;
-  inset:0;
-  z-index:-1;              
-  pointer-events:none;      
-  overflow:hidden;
+  top:0; left:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:0;
 }
-
-
-.neon-rain{
-  position:absolute;
-  top:-300px;
-  width:2px;
-  border-radius:12px;
-  opacity:0.95;
-  background:linear-gradient(to bottom,
-    rgba(180,76,255,0),
-    rgba(180,76,255,0.9),
-    rgba(255,215,0,0.9),
-    rgba(255,215,0,0));
-  filter:blur(.6px);
-  animation:rainFall linear infinite;
-}
-@keyframes rainFall{ to{ transform:translateY(160vh); opacity:0 } }
 
 
 header{
   position:fixed;
-  top:var(--safe-top);
-  left:0;
+  top:0; left:0;
   width:100%;
+  padding: calc(10px + var(--safe-top)) 20px 12px 20px;
+  background:#111;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:12px 18px;
-  background:rgba(17,17,17,0.95);
-  z-index:99999; 
-  box-shadow:0 6px 22px rgba(0,0,0,0.45);
-  -webkit-tap-highlight-color: transparent;
+  z-index:20;
+  box-shadow:0 0 10px rgba(255,255,255,0.15);
 }
-
 
 @keyframes neonPulseViolet {
   0%,100% { text-shadow:0 0 10px #b44cff,0 0 22px #d277ff; color:#b44cff; }
   50% { text-shadow:0 0 20px #d277ff,0 0 38px #b44cff; color:#d277ff; }
 }
+
 .logo{
-  font-size:20px;
-  font-weight:700;
+  font-size:30px;
   letter-spacing:2px;
-  cursor:pointer;
-  color:#b44cff;
   animation:neonPulseViolet 1.5s infinite;
-  user-select:none;
+  cursor:pointer;
 }
 
 
 .hamburger{
+  width:40px;
+  height:32px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  width:36px;height:26px;
   cursor:pointer;
 }
 .hamburger div{
-  height:3px;
-  background:#fff;
-  border-radius:3px;
-  transition:transform .25s, opacity .2s;
+  width:100%;
+  height:4px;
+  background:white;
+  border-radius:4px;
+  transition:0.3s;
 }
 
 
 .menu-panel{
   position:fixed;
   top:0;
-  right:-100%;
-  width:82%;
-  max-width:420px;
+  right:-70%;
+  width:70%;
   height:100vh;
-  background:#0f0f0f;
-  padding-top:calc(64px + var(--safe-top));
+  background:#111;
+  padding-top: calc(80px + var(--safe-top));
   display:flex;
   flex-direction:column;
-  gap:22px;
-  transition:right .28s ease;
-  z-index:99998;
-  box-shadow:-10px 0 30px rgba(0,0,0,0.6);
+  gap:25px;
+  transition:0.3s;
+  z-index:25;
+  box-shadow:-5px 0 20px rgba(0,0,0,0.6);
 }
-.menu-panel.show{ right:0 }
+.menu-panel.show{ right:0; }
 .menu-panel a{
-  color:#fff;
+  color:white;
+  font-size:22px;
   text-decoration:none;
-  font-size:20px;
-  padding:12px 22px;
-  display:block;
+  padding-left:20px;
 }
-.menu-panel a:hover{ color:#b44cff }
+.menu-panel a:hover{
+  color:#b44cff;
+  transform:translateX(5px);
+}
 
 
-.container{
-  max-width:1200px;
-  margin:0 auto;
-  padding:18px;
-}
 .page{
   display:none;
-  min-height:calc(100vh - 120px);
-  padding-top:12px;
+  padding-top:130px;
+  min-height:100vh;
 }
-.page.active{ display:block }
+.page.active{ display:block; }
 
 
 .gallery{
   display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:20px;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  padding:10px;
-  z-index:5; 
+  padding:20px;
 }
 .gallery img{
-  display:block;
   width:100%;
   border-radius:12px;
   object-fit:cover;
   cursor:pointer;
-  transition:transform .25s, box-shadow .25s;
-  touch-action: manipulation; 
+  transition:0.3s;
 }
-.gallery img:hover{ transform:scale(1.03); box-shadow:0 10px 30px rgba(180,76,255,0.08) }
+.gallery img:hover{ transform:scale(1.05); }
 
 
 .modal{
   position:fixed;
   inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   background:rgba(0,0,0,0.85);
   opacity:0;
   pointer-events:none;
-  transition:opacity .18s ease;
-  z-index:100000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:0.3s;
+  z-index:50;
 }
-.modal.show{ opacity:1; pointer-events:auto; }
+.modal.show{
+  opacity:1;
+  pointer-events:auto;
+}
 .modal img{
-  max-width:92%;
-  max-height:92%;
+  max-width:90%;
+  max-height:90%;
   border-radius:10px;
-  box-shadow:0 0 35px rgba(180,76,255,0.15);
+  box-shadow:0 0 30px #b44cff;
 }
 
 
-.contact-text{ text-align:center; color:#ccc; margin-top:8px }
-.contact-icons{ display:flex; gap:28px; justify-content:center; margin-top:26px }
-.contact-btn svg{ width:60px;height:60px; filter:drop-shadow(0 0 10px #b44cff) }
-.contact-btn:hover svg{ transform:scale(1.08) }
+.contact-text{
+  text-align:center;
+  margin-top:20px;
+  color:#ccc;
+}
+.contact-icons{
+  margin-top:40px;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+}
+.contact-btn svg{
+  width:65px;
+  height:65px;
+  filter:drop-shadow(0 0 10px #b44cff);
+  transition:0.3s;
+}
+.contact-btn:hover svg{
+  transform:scale(1.15);
+  filter:drop-shadow(0 0 20px #d277ff);
+}
 
 
-@media (max-width:600px){
-  body{padding-top:calc(var(--safe-top) + 72px)}
-  header{padding:10px 14px}
-  .logo{font-size:18px}
-  .menu-panel{width:92%}
-  .gallery{gap:12px;padding:8px}
+.neon-rain{
+  position:absolute;
+  top:-250px;
+  width:2px;
+  background:linear-gradient(to bottom,
+    rgba(180,76,255,0),
+    rgba(180,76,255,0.9),
+    rgba(255,215,0,0.9),
+    rgba(255,215,0,0)
+  );
+  opacity:0.9;
+  border-radius:12px;
+  animation:rainDrop 1.7s linear infinite;
+  filter:blur(0.5px);
+}
+@keyframes rainDrop{
+  to{
+    transform:translateY(170vh);
+    opacity:0;
+  }
 }
 </style>
 </head>
 <body>
 
-
-<div id="rainLayer" aria-hidden="true"></div>
+<div id="rainLayer"></div>
 
 
 <header>
   <div class="logo" onclick="openPage('portfolio')">joey.photographie</div>
-  <div class="hamburger" id="hamburger" aria-label="menu" role="button" tabindex="0">
+
+  <div class="hamburger" onclick="toggleMenu()">
     <div></div><div></div><div></div>
   </div>
 </header>
 
 
-<nav class="menu-panel" id="menuPanel" aria-hidden="true">
-  <a href="#" onclick="openPage('portfolio'); toggleMenu(); return false;">Portfolio</a>
-  <a href="#" onclick="openPage('contact'); toggleMenu(); return false;">Contact</a>
-</nav>
+<div class="menu-panel" id="menuPanel">
+  <a onclick="openPage('portfolio'); toggleMenu();">Portfolio</a>
+  <a onclick="openPage('contact'); toggleMenu();">Contact</a>
+</div>
 
 
-<main class="container">
-  <section id="portfolio" class="page active" aria-labelledby="portfolioTitle">
-    <h2 id="portfolioTitle" style="text-align:center;color:#ffd700;text-shadow:0 0 10px #ffd700;margin-bottom:12px">Portfolio</h2>
-    <div class="gallery" id="gallery">
-      <img src="1000085839.jpg" alt="photo 1">
-      <img src="1000085860.jpg" alt="photo 2">
-      <img src="1000085861.jpg" alt="photo 3">
-      <img src="1000085937.jpg" alt="photo 4">
-      <img src="1000085939.jpg" alt="photo 5">
-      <img src="1000085949.jpg" alt="photo 6">
-    </div>
-  </section>
+<div id="portfolio" class="page active">
+  <h2 style="text-align:center;color:#ffd700;text-shadow:0 0 10px #ffd700;">Portfolio</h2>
 
-  <section id="contact" class="page" aria-labelledby="contactTitle">
-    <h2 id="contactTitle" style="text-align:center;color:#ffd700;text-shadow:0 0 10px #ffd700;margin-bottom:8px">Contact</h2>
-    <p class="contact-text">Retrouvez encore plus de photos sur mes réseaux !</p>
-    <div class="contact-icons">
-      <a class="contact-btn" href="https://x.com/Swiizayy" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016.5 2a4.48 4.48 0 00-4.47 4.48c0 .35.04.7.12 1.03A12.94 12.94 0 013 3.1a4.48 4.48 0 001.39 5.98A4.41 4.41 0 012.8 8.7v.06A4.48 4.48 0 004.46 13a4.52 4.52 0 01-2.02.08A4.48 4.48 0 006.6 16a9 9 0 01-5.57 1.92A8.6 8.6 0 010 17.9 12.93 12.93 0 007 20c8.4 0 13-7.1 13-13.26v-.6A9.18 9.18 0 0023 3z"/></svg>
-      </a>
-      <a class="contact-btn" href="https://www.instagram.com/j0ey.67/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4" fill="#ffffff"/><circle cx="17" cy="7" r="1" fill="#ffffff"/></svg>
-      </a>
-    </div>
-  </section>
-</main>
+  <div class="gallery">
+    <img src="1000085839.jpg">
+    <img src="1000085860.jpg">
+    <img src="1000085861.jpg">
+    <img src="1000085937.jpg">
+    <img src="1000085939.jpg">
+    <img src="1000085949.jpg">
+  </div>
+</div>
 
 
-<div id="modal" class="modal" aria-hidden="true"><img id="modalImg" alt=""></div>
+<div id="contact" class="page">
+  <h2 style="text-align:center;color:#ffd700;text-shadow:0 0 12px #ffd700;">Contact</h2>
+
+  <p class="contact-text">Retrouvez encore plus de photos sur mes réseaux !</p>
+
+  <div class="contact-icons">
+    <a class="contact-btn" href="https://x.com/Swiizayy" target="_blank">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016.5 2a4.48 4.48 0 00-4.47 4.48c0 .35.04.7.12 1.03A12.94 12.94 0 013 3.1a4.48 4.48 0 001.39 5.98A4.41 4.41 0 012.8 8.7v.06A4.48 4.48 0 004.46 13a4.52 4.52 0 01-2.02.08A4.48 4.48 0 006.6 16a9 9 0 01-5.57 1.92A8.6 8.6 0 010 17.9 12.93 12.93 0 007 20c8.4 0 13-7.1 13-13.26v-.6A9.18 9.18 0 0023 3z"/>
+      </svg>
+    </a>
+
+    <a class="contact-btn" href="https://www.instagram.com/j0ey.67/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4" fill="#ffffff"/>
+        <circle cx="17" cy="7" r="1" fill="#ffffff"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+
+<div id="modal" class="modal">
+  <img id="modalImg">
+</div>
 
 <script>
-
-const menuPanel = document.getElementById('menuPanel');
-const hamburger = document.getElementById('hamburger');
 function toggleMenu(){
-  const show = menuPanel.classList.toggle('show');
-  menuPanel.setAttribute('aria-hidden', !show);
-
-  hamburger.classList.toggle('open');
+  document.getElementById("menuPanel").classList.toggle("show");
 }
-hamburger.addEventListener('click', toggleMenu);
-hamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') toggleMenu(); });
 
 function openPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const el = document.getElementById(id);
-  if(el) el.classList.add('active');
- 
-  if(menuPanel.classList.contains('show')) toggleMenu();
-  
-  setTimeout(()=> window.scrollTo({top:0, behavior:'smooth'}), 50);
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
 
-function attachGalleryEvents(){
-  const galleryImgs = Array.from(document.querySelectorAll('.gallery img'));
-  galleryImgs.forEach(img => {
-   
-    const newImg = img.cloneNode(true);
-    img.parentNode.replaceChild(newImg, img);
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modalImg");
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+  img.addEventListener("click",()=>{
+    modalImg.src=img.src;
+    modal.classList.add("show");
   });
-  document.querySelectorAll('.gallery img').forEach(img=>{
-    img.addEventListener('click', ()=> openLightbox(img.src));
-  
-    img.addEventListener('touchend', (e)=>{ e.preventDefault(); openLightbox(img.src); }, {passive:false});
-  });
-}
-
-
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
-function openLightbox(src){
-  modalImg.src = src;
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden','false');
-}
-function closeLightbox(){
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden','true');
-}
-modal.addEventListener('click', closeLightbox);
-
-
-function createNeonRain(drops=40){
-  const layer = document.getElementById('rainLayer');
-  layer.innerHTML = '';
-  for(let i=0;i<drops;i++){
-    const d = document.createElement('div');
-    d.className = 'neon-rain';
-    d.style.left = (Math.random()*100).toFixed(2) + '%';
-    d.style.height = (120 + Math.random()*220) + 'px';
-    d.style.animationDuration = (1.4 + Math.random()*0.9) + 's';
-    d.style.animationDelay = (Math.random()*1.5) + 's';
-    layer.appendChild(d);
-  }
-}
-
-
-createNeonRain(45);
-attachGalleryEvents();
-
-
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') {
-    if(modal.classList.contains('show')) closeLightbox();
-    if(menuPanel.classList.contains('show')) toggleMenu();
-  }
 });
+
+modal.addEventListener("click",()=>modal.classList.remove("show"));
+
+
+function createNeonRain(){
+  const layer=document.getElementById("rainLayer");
+  for(let i=0;i<45;i++){
+    let drop=document.createElement("div");
+    drop.classList.add("neon-rain");
+    drop.style.left=Math.random()*100+"%";
+    drop.style.height=(150+Math.random()*220)+"px";
+    drop.style.animationDelay=(Math.random()*1.8)+"s";
+    layer.appendChild(drop);
+  }
+}
+createNeonRain();
 </script>
+
 </body>
 </html>
