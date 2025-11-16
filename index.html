@@ -50,7 +50,6 @@ header{
   box-shadow:0 0 10px rgba(255,255,255,0.15);
 }
 
-
 @keyframes neonPulseViolet {
   0%,100% { text-shadow:0 0 10px #b44cff,0 0 22px #d277ff; color:#b44cff; }
   50% { text-shadow:0 0 20px #d277ff,0 0 38px #b44cff; color:#d277ff; }
@@ -192,7 +191,7 @@ header{
 
 .neon-rain{
   position:absolute;
-  top:-230px;
+  top:-250px;
   width:2px;
   background:linear-gradient(to bottom,
     rgba(180,76,255,0),
@@ -202,23 +201,21 @@ header{
   );
   opacity:0.9;
   border-radius:12px;
-  animation:rainDrop 1.7s linear infinite;
+  animation:rainDrop 1.8s linear infinite;
   filter:blur(0.6px);
 }
-
 @keyframes rainDrop{
   to{
-    transform:translateY(160vh);
+    transform:translateY(170vh);
     opacity:0;
   }
 }
 </style>
 </head>
+
 <body>
 
-
 <div id="rainLayer"></div>
-
 
 <header>
   <div class="logo" onclick="openPage('portfolio')">joey.photographie</div>
@@ -227,7 +224,6 @@ header{
     <div></div><div></div><div></div>
   </div>
 </header>
-
 
 <div class="menu-panel" id="menuPanel">
   <a onclick="openPage('portfolio'); toggleMenu();">Portfolio</a>
@@ -298,12 +294,12 @@ modal.addEventListener("click",()=>modal.classList.remove("show"));
 
 function createNeonRain(){
   const layer=document.getElementById("rainLayer");
-  for(let i=0;i<45;i++){
+  for(let i=0;i<50;i++){
     let drop=document.createElement("div");
     drop.classList.add("neon-rain");
     drop.style.left=Math.random()*100+"%";
-    drop.style.height=(150+Math.random()*220)+"px";
-    drop.style.animationDelay=(Math.random()*1.8)+"s";
+    drop.style.height=(140+Math.random()*220)+"px";
+    drop.style.animationDelay=(Math.random()*2)+"s";
     layer.appendChild(drop);
   }
 }
