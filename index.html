@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>joey.photographie</title>
 
 <style>
@@ -10,15 +10,8 @@
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
 body{
-  background:#0d0d0d;
-  color:#fff;
-  overflow-x:hidden;
-  -webkit-tap-highlight-color: transparent;
-}
-
-
-img, a {
-  touch-action: manipulation;
+  background:#0d0d0d;color:#fff;overflow-x:hidden;
+  padding-top: env(safe-area-inset-top);
 }
 
 
@@ -27,7 +20,8 @@ header{
   padding:15px 25px;
   background:#111;
   display:flex;justify-content:space-between;align-items:center;
-  z-index:5000;
+  z-index:2000;
+  pointer-events:auto;
   box-shadow:0 0 10px rgba(255,255,255,0.08);
 }
 
@@ -37,80 +31,49 @@ header{
 }
 
 .logo{
-  font-size:30px;
-  font-weight:700;
-  letter-spacing:3px;
+  font-size:30px;font-weight:700;letter-spacing:3px;
   animation:neonPulseViolet 1.5s infinite;
-  cursor:pointer;
-  transition:0.25s;
+  cursor:pointer;transition:0.25s;
 }
 .logo:hover{transform:scale(1.08)}
 
 .menu-bar a{
-  margin-left:25px;
-  font-size:20px;
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-  cursor:pointer;
-  position:relative;
-  z-index:6000;
+  margin-left:25px;font-size:20px;color:white;text-decoration:none;
+  transition:0.3s;cursor:pointer;
 }
 .menu-bar a:hover{color:#b44cff}
 
 
 .page{
   display:none;
-  padding-top:110px;
+  padding-top:120px;
   min-height:100vh;
 }
 .page.active{
   display:block;
   position:relative;
-  z-index:200;
+  z-index:2;
 }
 
 
 .gallery{
-  display:grid;
-  gap:20px;
-  padding:20px;
+  display:grid;gap:20px;padding:20px;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  position:relative;
-  z-index:200;
+  position:relative;z-index:2;
 }
-
 .gallery img{
-  width:100%;
-  border-radius:12px;
-  object-fit:cover;
-  cursor:pointer;
+  width:100%;border-radius:12px;object-fit:cover;cursor:pointer;
   transition:0.3s;
-  -webkit-user-drag: none;
 }
-.gallery img:hover{
-  transform:scale(1.05);
-}
+.gallery img:hover{transform:scale(1.05)}
 
 
-.contact-text{
-  text-align:center;
-  font-size:18px;
-  margin-top:10px;
-  color:#ccc;
-}
-
+.contact-text{text-align:center;font-size:18px;margin-top:10px;color:#ccc}
 .contact-icons{
-  text-align:center;
-  margin-top:50px;
-  display:flex;
-  justify-content:center;
-  gap:40px;
+  text-align:center;margin-top:50px;display:flex;justify-content:center;gap:40px;
 }
 .contact-btn svg{
-  width:65px;
-  height:65px;
-  transition:0.25s;
+  width:65px;height:65px;transition:0.25s;
   filter:drop-shadow(0 0 10px #b44cff);
 }
 .contact-btn:hover svg{
@@ -124,16 +87,11 @@ header{
   display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,0.85);
   opacity:0;pointer-events:none;
-  transition:0.3s;
-  z-index:9000;
+  transition:0.3s;z-index:3000;
 }
-.modal.show{
-  opacity:1;pointer-events:auto;
-}
+.modal.show{opacity:1;pointer-events:auto}
 .modal img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:10px;
+  max-width:90%;max-height:90%;border-radius:10px;
   box-shadow:0 0 25px #b44cff;
 }
 
@@ -142,7 +100,6 @@ header{
   position:absolute;
   top:-200px;
   width:2px;
-  height:160px;
   opacity:0.9;
   background:linear-gradient(to bottom,
       rgba(180,76,255,0),
@@ -153,29 +110,25 @@ header{
   filter:blur(0.5px);
   animation:rainFall 1.5s linear infinite;
   border-radius:15px;
-  pointer-events:none; 
-  z-index:0;
+  z-index:-1; 
 }
 
 @keyframes rainFall{
   to{ transform:translateY(140vh); opacity:0; }
 }
-
-#rainLayer{
-  position:absolute;
-  top:0;left:0;
-  width:100%;height:100%;
-  z-index:0;
-  overflow:hidden;
-  pointer-events:none; 
-}
 </style>
-
 </head>
 <body>
 
 
-<div id="rainLayer"></div>
+<div id="rainLayer" style="
+  position:absolute;
+  top:0;left:0;width:100%;
+  height:400vh;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:-1;
+"></div>
 
 <header>
   <div class="logo" onclick="openPage('portfolio')">joey.photographie</div>
@@ -185,7 +138,6 @@ header{
     <a onclick="openPage('contact')">Contact</a>
   </div>
 </header>
-
 
 <div id="portfolio" class="page active">
   <h2 style="text-align:center;margin-bottom:20px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Portfolio</h2>
@@ -200,7 +152,6 @@ header{
   </div>
 </div>
 
-
 <div id="contact" class="page">
   <h2 style="text-align:center;margin-bottom:25px;color:#ffd700;text-shadow:0 0 10px #ffd700;">Contact</h2>
 
@@ -210,7 +161,6 @@ header{
   </p>
 
   <div class="contact-icons">
-
     <a class="contact-btn" href="https://x.com/Swiizayy" target="_blank">
       <svg viewBox="0 0 24 24" fill="white">
         <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016.5 2a4.48 4.48 0 00-4.47 4.48c0 .35.04.7.12 1.03A12.94 12.94 0 013 3.1a4.48 4.48 0 001.39 5.98A4.41 4.41 0 012.8 8.7v.06A4.48 4.48 0 004.46 13a4.52 4.52 0 01-2.02.08A4.48 4.48 0 006.6 16a9 9 0 01-5.57 1.92A8.6 8.6 0 010 17.9 12.93 12.93 0 007 20c8.4 0 13-7.1 13-13.26v-.6A9.18 9.18 0 0023 3z"/>
@@ -224,43 +174,43 @@ header{
         <circle cx="17" cy="7" r="1" fill="#ffffff"/>
       </svg>
     </a>
-
   </div>
 </div>
 
-
-<div id="modal" class="modal">
-  <img id="modalImg">
-</div>
+<div id="modal" class="modal"><img id="modalImg"></div>
 
 <script>
+
 function openPage(id){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
+const modal=document.getElementById('modal');
+const modalImg=document.getElementById('modalImg');
 
 document.querySelectorAll('.gallery img').forEach(img=>{
-  img.addEventListener('click', ()=>{
-    modalImg.src = img.src;
+  img.addEventListener('click',()=>{
+    modalImg.src=img.src;
     modal.classList.add('show');
   });
 });
-modal.addEventListener('click', ()=> modal.classList.remove('show'));
+modal.addEventListener('click',()=>modal.classList.remove('show'));
 
 function createNeonRain(){
-  const layer = document.getElementById('rainLayer');
-  for(let i=0; i<35; i++){
-    let drop = document.createElement('div');
+  const layer=document.getElementById('rainLayer');
+  for(let i=0;i<45;i++){
+    let drop=document.createElement('div');
     drop.classList.add('neon-rain');
-    drop.style.left = Math.random()*100 + '%';
-    drop.style.height = (120 + Math.random()*200) + 'px';
-    drop.style.animationDelay = (Math.random()*1.5) + 's';
+
+    drop.style.left=Math.random()*100+'%';
+    drop.style.height=(120+Math.random()*200)+'px';
+    drop.style.animationDelay=(Math.random()*1.5)+'s';
+
     layer.appendChild(drop);
   }
 }
+
 createNeonRain();
 </script>
 
